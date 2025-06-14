@@ -1,0 +1,64 @@
+@use '@/styles/vars.module.scss' as *;
+
+* { 
+  min-width: 0;
+  min-height: 0;
+  margin: 0; 
+  padding: 0; 
+  outline: 0;
+  border: 0;
+  box-sizing: border-box; 
+  scroll-behavior: smooth; 
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, input, button, textarea, select { 
+  font-family: var(--font-poppins); 
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-inter);
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.noScroll {
+  overflow: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+
+@media screen and (max-width: 584px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  html {
+    font-size: 12px;
+  }
+}

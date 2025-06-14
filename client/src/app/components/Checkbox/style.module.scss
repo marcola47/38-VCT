@@ -1,0 +1,138 @@
+@use "@/styles/vars.module.scss" as *;
+@use "sass:color";
+
+.checkbox {
+  @include flexbox($a: center); 
+  position: relative;
+  cursor: pointer;
+
+  .box {
+    @include flexbox($j: center, $a: center);
+    flex-shrink: 0;
+    border: 2px solid #00000000;
+    @include transition; 
+
+    .icon {
+      opacity: 0;
+      @include transition;
+    }
+  }
+
+  .text {
+    font-weight: 500;
+  }
+
+  .input {
+    z-index: -10;
+    opacity: 0;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+
+  &Selected {
+    .box {
+      .icon {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.shape {
+  &Square .box {
+    border-radius: $br_xs;
+  }
+  
+  &Squircle .box {
+    border-radius: $br_s;
+  }
+
+  &Circle .box {
+    border-radius: $br_xl;
+  }
+}
+
+.size {
+  &Small {
+    gap: 4px;
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    
+    .box {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &Mid {
+    gap: 6px;
+    font-size: 1rem;
+    line-height: 1rem;
+    
+    .box {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+  
+  &Large {
+    gap: 8px;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    
+    .box {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+
+@each $color-name, $color-value in $colors-main {
+  $hue: color.channel($color-value, "hue", $space: hsl);
+  $saturation: color.channel($color-value, "saturation", $space: hsl);
+  
+  .color {
+    &#{ $color-name } {
+      &Dark {
+        .box {
+          border-color: $color-value;
+
+          .icon {
+            color: hsl($hue, $saturation, 90%);
+          }
+        }
+
+        .text {
+          color: $grey_25;
+        }
+
+        &Selected {
+          .box {
+            background-color: $color-value;
+          }
+        }
+      }
+
+      &Light {
+        .box {
+          border-color: hsl($hue, $saturation, 70%);
+
+          .icon {
+            color: hsl($hue, $saturation, 25%);
+          }
+        }
+
+        .text {
+          color: #fff;
+        }
+
+        &Selected {
+          .box {
+            background-color: hsl($hue, $saturation, 70%);
+          }
+        }
+      }
+    }
+  }
+}

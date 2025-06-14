@@ -1,0 +1,195 @@
+@use "@/styles/vars.module.scss" as *;
+@use "sass:color";
+
+.selector {
+  @include flexbox($a: center, $g: 6px);
+  
+  position: relative;
+  padding: 12px 16px;
+  border: 2px solid #00000000;
+  cursor: pointer;
+
+  &Disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .label {
+    padding-inline: 4px;
+    margin-left: -4px;
+
+    color: $grey-20;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .icon {
+    @include flexbox($a: center);
+
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .field, .display {
+    @include flexbox($g: 8px);
+    
+    width: 100%;
+    min-height: 24px;
+    font-size: 1rem;
+  }
+
+  .chevron {
+    font-size: 1.2rem;
+    cursor: pointer;
+    @include transition;
+
+    &Flipped {
+      transform: rotate(180deg);
+    }
+  }
+
+  .list {
+    z-index: 2;
+    position: absolute;
+    top: 56px;
+    left: -2px;
+    width: calc(100% + 4px);
+    padding-block: 8px;
+    border: 2px solid #00000000;
+    border-radius: $br-s;
+
+    background-color: #fff;
+
+    .item {
+      @include flexbox($a: center, $g: 12px);
+
+      max-width: calc(100%);
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      
+      padding: 8px 24px;
+      cursor: pointer;
+      @include transition;
+    }
+  }
+}
+
+.shape {
+  &Square, &Square .field {
+    border-radius: $br-s;
+  }
+
+  &Squircle, &Squircle .field {
+    border-radius: $br-l;
+  }
+
+  &Circle, &Circle .field {
+    border-radius: $br-xxl;
+  }
+}
+
+.height {
+  &Short .list {
+    max-height: 200px;
+  }
+
+  &Mid .list {
+    max-height: 312px;
+  }
+
+  &Tall .list {
+    max-height: 480px;
+  }
+}
+
+.labelPadding {
+  padding: 6px 16px 12px 16px;
+}
+
+// WHY: only apply the margin-bottom if setError is provided, meaning that there can be errors.
+.errorMargin {
+  margin-bottom: 16px;
+}
+
+.idMonoFont .list .item .first {
+  font-family: monospace;
+  font-size: 17px;
+}
+
+.bold {
+  font-weight: 600;
+
+  .display, .list .item {
+    font-weight: 600;
+  }
+}
+
+@each $color-name, $color-value in $colors-main {
+  $hue: color.channel($color-value, "hue", $space: hsl);
+  $saturation: color.channel($color-value, "saturation", $space: hsl);
+  
+  .color {
+    &#{ $color-name } {
+      &Border {
+        border-color: $color-value;
+
+        .list {
+          border-color: $color-value;  
+        }
+      }
+
+      &Bg {
+        background-color: hsl($hue, $saturation, 85%);
+
+        .list {          
+          background-color: hsl($hue, $saturation, 85%);
+        }  
+      }
+
+      .label {
+        color: $color-value;
+      }
+
+      .icon, .icon > *, .chevron {
+        color: $color-value;
+      }
+
+      .item {
+        &:hover, &Selected {
+          background-color: hsl($hue, $saturation, 95%);
+        }
+      }
+    }
+  }
+}
+
+.error {
+  border-color: $red_45;
+  background-color: $red_85;
+
+  &Message {
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+
+    display: -webkit-box; 
+    overflow: hidden; 
+    line-clamp: 1;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+
+    color: $red_45;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .label {
+    color: $red_45;
+  }
+
+  .icon, .icon > *, .toggle {
+    color: $red_45;
+  }
+}

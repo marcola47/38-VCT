@@ -1,0 +1,109 @@
+@use "@/styles/vars.module.scss" as *;
+
+.footer {
+  @include flexbox($d: column, $g: 24px);
+  width: 100%;
+  padding: 64px;
+  background-color: $purple_30;
+
+  div, a {
+    color: #fff;
+  }
+
+  .content {
+    @include flexbox($j: space-between, $g: 32px);
+
+    .links {
+      @include flexbox($g: 16px);
+      
+      .column {
+        @include flexbox($d: column);
+
+        a {
+          display: block;
+          padding-block: 4px;
+          @include transition;
+
+          &:hover {
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.25))
+          }
+        }
+      }
+    }
+
+    .info {
+      @include flexbox($d: column, $g: 16px);
+
+      .item {
+        @include flexbox($d: column, $a: flex-end);
+      }
+    }
+  }
+
+  .copyright {
+    @include flexbox($d: column);
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .footer {
+    @include flexbox($d: column, $a: center);
+    
+    .content {
+      @include flexbox($d: column);
+
+      .info {
+        @include flexbox($d: row, $j: center);
+
+        .item {
+          @include flexbox($d: column, $a: center);
+        }
+      }
+    }
+
+    .copyright {
+      @include flexbox($d: column, $a: center);
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .footer {
+    .content {
+      @include flexbox($d: column, $g: 48px);
+      
+      .links {
+        @include flexbox($d: column, $a: center, $g: 32px);
+  
+        .column {
+          @include flexbox($d: column, $a: center);
+
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .info {
+        @include flexbox($d: column);
+      }
+    }
+
+    .copyright {
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .footer {
+    .logo {
+      max-width: 100%;
+      
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

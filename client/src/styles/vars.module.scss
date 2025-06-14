@@ -1,0 +1,378 @@
+$br_c: 50%;
+$br_xxl: 24px;
+$br_xl: 20px;
+$br_l: 16px;
+$br_m: 12px;
+$br_s: 8px;
+$br_xs: 4px;
+
+$w1: 8.3333%;
+$w2: 16.6666%;
+$w3: 25%;
+$w4: 33.3333%;
+$w5: 41.6666%;
+$w6: 50%;
+$w7: 58.3333%;
+$w8: 66.6666%;
+$w9: 75%;
+$w10: 83.3333%;
+$w11: 91.6666%;
+$w12: 100%;
+
+$purple_5: hsl(270, 90%, 5%);
+$purple_10: hsl(270, 90%, 10%);
+$purple_15: hsl(270, 90%, 15%);
+$purple_20: hsl(270, 90%, 20%);
+$purple_25: hsl(270, 90%, 25%);
+$purple_30: hsl(270, 90%, 30%);
+$purple_35: hsl(270, 90%, 35%);
+$purple_40: hsl(270, 90%, 40%);
+$purple_45: hsl(270, 90%, 45%);
+$purple_50: hsl(270, 90%, 50%);
+$purple_55: hsl(270, 90%, 55%);
+$purple_60: hsl(270, 90%, 60%);
+$purple_65: hsl(270, 90%, 65%);
+$purple_70: hsl(270, 90%, 70%);
+$purple_75: hsl(270, 90%, 75%);
+$purple_80: hsl(270, 90%, 80%);
+$purple_85: hsl(270, 90%, 85%);
+$purple_90: hsl(270, 90%, 90%);
+$purple_95: hsl(270, 90%, 95%);
+
+$orange_5: hsl(30, 100%, 5%);
+$orange_10: hsl(30, 100%, 10%);
+$orange_15: hsl(30, 100%, 15%);
+$orange_20: hsl(30, 100%, 20%);
+$orange_25: hsl(30, 100%, 25%);
+$orange_30: hsl(30, 100%, 30%);
+$orange_35: hsl(30, 100%, 35%);
+$orange_40: hsl(30, 100%, 40%);
+$orange_45: hsl(30, 100%, 45%);
+$orange_50: hsl(30, 100%, 50%); 
+$orange_55: hsl(30, 100%, 55%);
+$orange_60: hsl(30, 100%, 60%);
+$orange_65: hsl(30, 100%, 65%);
+$orange_70: hsl(30, 100%, 70%);
+$orange_75: hsl(30, 100%, 75%);
+$orange_80: hsl(30, 100%, 80%);
+$orange_85: hsl(30, 100%, 85%);
+$orange_90: hsl(30, 100%, 90%);
+$orange_95: hsl(30, 100%, 95%);
+
+$blue_5: hsl(232, 50%, 5%);
+$blue_10: hsl(232, 50%, 10%);
+$blue_15: hsl(232, 50%, 15%);
+$blue_20: hsl(232, 50%, 20%);
+$blue_25: hsl(232, 50%, 25%);
+$blue_30: hsl(232, 50%, 30%);
+$blue_35: hsl(232, 50%, 35%); 
+$blue_40: hsl(232, 50%, 40%);
+$blue_45: hsl(232, 50%, 45%); 
+$blue_50: hsl(232, 50%, 50%);
+$blue_55: hsl(232, 50%, 55%);
+$blue_60: hsl(232, 50%, 60%);
+$blue_65: hsl(232, 50%, 65%);
+$blue_70: hsl(232, 50%, 70%);
+$blue_75: hsl(232, 50%, 75%);
+$blue_80: hsl(232, 50%, 80%);
+$blue_85: hsl(232, 50%, 85%);
+$blue_90: hsl(232, 50%, 90%);
+$blue_95: hsl(232, 50%, 95%);
+
+$payne_5: hsl(214, 20%, 5%);
+$payne_10: hsl(214, 20%, 10%);
+$payne_15: hsl(214, 20%, 15%);
+$payne_20: hsl(214, 20%, 20%);
+$payne_25: hsl(214, 20%, 25%);
+$payne_30: hsl(214, 20%, 30%);
+$payne_35: hsl(214, 20%, 35%); 
+$payne_40: hsl(214, 20%, 40%);
+$payne_45: hsl(214, 20%, 45%); 
+$payne_50: hsl(214, 20%, 50%);
+$payne_55: hsl(214, 20%, 55%);
+$payne_60: hsl(214, 20%, 60%);
+$payne_65: hsl(214, 20%, 65%);
+$payne_70: hsl(214, 20%, 70%);
+$payne_75: hsl(214, 20%, 75%);
+$payne_80: hsl(214, 20%, 80%);
+$payne_85: hsl(214, 20%, 85%);
+$payne_90: hsl(214, 20%, 90%);
+$payne_95: hsl(214, 20%, 95%);
+
+$grey_5: hsl(0, 0%, 5%);
+$grey_10: hsl(0, 0%, 10%);
+$grey_15: hsl(0, 0%, 15%);
+$grey_20: hsl(0, 0%, 20%);
+$grey_25: hsl(0, 0%, 25%);
+$grey_30: hsl(0, 0%, 30%);
+$grey_35: hsl(0, 0%, 35%);
+$grey_40: hsl(0, 0%, 40%); 
+$grey_45: hsl(0, 0%, 45%);
+$grey_50: hsl(0, 0%, 50%); 
+$grey_55: hsl(0, 0%, 55%);
+$grey_60: hsl(0, 0%, 60%); 
+$grey_65: hsl(0, 0%, 65%); 
+$grey_70: hsl(0, 0%, 70%);
+$grey_75: hsl(0, 0%, 75%);
+$grey_80: hsl(0, 0%, 80%);
+$grey_85: hsl(0, 0%, 85%);
+$grey_90: hsl(0, 0%, 90%);
+$grey_95: hsl(0, 0%, 95%);
+
+$steel_5: hsl(213, 36%, 5%);
+$steel_10: hsl(213, 36%, 10%);
+$steel_15: hsl(213, 36%, 15%);
+$steel_20: hsl(213, 36%, 20%);
+$steel_25: hsl(213, 36%, 25%);
+$steel_30: hsl(213, 36%, 30%);
+$steel_35: hsl(213, 36%, 35%);
+$steel_40: hsl(213, 36%, 40%); 
+$steel_45: hsl(213, 36%, 45%);
+$steel_50: hsl(213, 36%, 50%); 
+$steel_55: hsl(213, 36%, 55%);
+$steel_60: hsl(213, 36%, 60%); 
+$steel_65: hsl(213, 36%, 65%); 
+$steel_70: hsl(213, 36%, 70%);
+$steel_75: hsl(213, 36%, 75%);
+$steel_80: hsl(213, 36%, 80%);
+$steel_85: hsl(213, 36%, 85%);
+$steel_90: hsl(213, 36%, 90%);
+$steel_95: hsl(213, 36%, 95%);
+
+$green_5: hsl(128, 80%, 5%);
+$green_10: hsl(128, 80%, 10%);
+$green_15: hsl(128, 80%, 15%);
+$green_20: hsl(128, 80%, 20%);
+$green_25: hsl(128, 80%, 25%);
+$green_30: hsl(128, 80%, 30%);
+$green_35: hsl(128, 80%, 35%);
+$green_40: hsl(128, 80%, 40%); 
+$green_45: hsl(128, 80%, 45%);
+$green_50: hsl(128, 80%, 50%); 
+$green_55: hsl(128, 80%, 55%);
+$green_60: hsl(128, 80%, 60%); 
+$green_65: hsl(128, 80%, 65%); 
+$green_70: hsl(128, 80%, 70%);
+$green_75: hsl(128, 80%, 75%);
+$green_80: hsl(128, 80%, 80%);
+$green_85: hsl(128, 80%, 85%);
+$green_90: hsl(128, 80%, 90%);
+$green_95: hsl(128, 80%, 95%);
+
+$yellow_5: hsl(50, 100%, 5%);
+$yellow_10: hsl(50, 100%, 10%);
+$yellow_15: hsl(50, 100%, 15%);
+$yellow_20: hsl(50, 100%, 20%);
+$yellow_25: hsl(50, 100%, 25%);
+$yellow_30: hsl(50, 100%, 30%);
+$yellow_35: hsl(50, 100%, 35%);
+$yellow_40: hsl(50, 100%, 40%); 
+$yellow_45: hsl(50, 100%, 45%);
+$yellow_50: hsl(50, 100%, 50%); 
+$yellow_55: hsl(50, 100%, 55%);
+$yellow_60: hsl(50, 100%, 60%); 
+$yellow_65: hsl(50, 100%, 65%); 
+$yellow_70: hsl(50, 100%, 70%);
+$yellow_75: hsl(50, 100%, 75%);
+$yellow_80: hsl(50, 100%, 80%);
+$yellow_85: hsl(50, 100%, 85%);
+$yellow_90: hsl(50, 100%, 90%);
+$yellow_95: hsl(50, 100%, 95%);
+
+$red_5: hsl(0, 80%, 5%);
+$red_10: hsl(0, 80%, 10%);
+$red_15: hsl(0, 80%, 15%);
+$red_20: hsl(0, 80%, 20%);
+$red_25: hsl(0, 80%, 25%);
+$red_30: hsl(0, 80%, 30%);
+$red_35: hsl(0, 80%, 35%);
+$red_40: hsl(0, 80%, 40%); 
+$red_45: hsl(0, 80%, 45%);
+$red_50: hsl(0, 80%, 50%); 
+$red_55: hsl(0, 80%, 55%);
+$red_60: hsl(0, 80%, 60%); 
+$red_65: hsl(0, 80%, 65%); 
+$red_70: hsl(0, 80%, 70%);
+$red_75: hsl(0, 80%, 75%);
+$red_80: hsl(0, 80%, 80%);
+$red_85: hsl(0, 80%, 85%);
+$red_90: hsl(0, 80%, 90%);
+$red_95: hsl(0, 80%, 95%);
+
+$colors_main: (
+  "Purple": $purple_40,
+  "Violet": $purple_55,
+  "Orange": $orange_45,
+  "Blue"  : $blue_40,
+  "Payne" : $payne_40,
+  
+  "Black" : $grey_15,
+  "Grey"  : $grey_30,
+  "Silver": $grey_50,
+  "Steel"  : $steel_30,
+  "White" : #ffffff,
+
+  "Green" : $green_40,
+  "Yellow": $yellow_50, 
+  "Red"   : $red_45,
+);
+
+$job-status-color-variants: (
+  "Canceled" : $red_45,
+  "Pending"  : $orange_45,
+  "PaymentPending": $orange_45,
+  "Briefing": $purple_40,
+  "Development": $purple_55,
+  "Approval": $yellow_50,
+  "Delivered": $green_40,
+  "Reviewd": $blue_40,
+);
+
+$tier-color-variants: (
+  "Basic": (
+    color_95: $payne_95,
+    color_90: $payne_90,
+    color_85: $payne_85,
+    color_80: $payne_80,
+    color_75: $payne_75,
+    color_70: $payne_70,
+    color_65: $payne_65,
+    color_60: $payne_60,
+    color_55: $payne_55,
+    color_50: $payne_50,
+    color_45: $payne_45,
+    color_40: $payne_40,
+    color_35: $payne_35,
+    color_30: $payne_30,
+    color_25: $payne_25,
+    color_20: $payne_20,
+    color_15: $payne_15,
+    color_10: $payne_10,
+    color_5: $payne_5
+  ),
+  "Standard": (
+    color_95: $blue_95,
+    color_90: $blue_90,
+    color_85: $blue_85,
+    color_80: $blue_80,
+    color_75: $blue_75,
+    color_70: $blue_70,
+    color_65: $blue_65,
+    color_60: $blue_60,
+    color_55: $blue_55,
+    color_50: $blue_50,
+    color_45: $blue_45,
+    color_40: $blue_40,
+    color_35: $blue_35,
+    color_30: $blue_30,
+    color_25: $blue_25,
+    color_20: $blue_20,
+    color_15: $blue_15,
+    color_10: $blue_10,
+    color_5: $blue_5
+  ),
+  "Premium": (
+    color_95: $purple_95,
+    color_90: $purple_90,
+    color_85: $purple_85,
+    color_80: $purple_80,
+    color_75: $purple_75,
+    color_70: $purple_70,
+    color_65: $purple_65,
+    color_60: $purple_60,
+    color_55: $purple_55,
+    color_50: $purple_50,
+    color_45: $purple_45,
+    color_40: $purple_40,
+    color_35: $purple_35,
+    color_30: $purple_30,
+    color_25: $purple_25,
+    color_20: $purple_20,
+    color_15: $purple_15,
+    color_10: $purple_10,
+    color_5: $purple_5
+  ),
+);
+
+@mixin transition { 
+  transition: all 0.1s ease-in-out;
+}
+
+@mixin container($max-width: 1280px, $padding: true, $initial_padding: 0px) {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+
+  @if $padding {
+    @media screen and (min-width: #{$max-width + 1 + ($initial_padding * 2)}) {
+      padding-inline: $initial_padding;
+    }
+  
+    @if $initial_padding != 0px {
+      @media screen and (max-width: #{$max-width + ($initial_padding * 2)}) {
+        padding-inline: $initial_padding - 12px;
+      }
+    
+      @media screen and (max-width: 768px) {
+        padding-inline: $initial_padding - 24px;
+      }
+    
+      @media screen and (max-width: 576px) {
+        max-width: 100%;
+        padding-inline: $initial_padding - 32px;
+      }
+    } 
+    
+    @else {
+      @media screen and (max-width: #{$max-width + 96px}) {
+        padding-inline: 48px;
+      }
+    
+      @media screen and (max-width: 768px) {
+        padding-inline: 32px;
+      }
+    
+      @media screen and (max-width: 576px) {
+        max-width: 100%;
+        padding-inline: 24px;
+      }
+    }
+  }
+}
+
+@mixin flexbox($d: null, $j: null, $a: null, $w: null, $g: null) {
+  display: flex;
+  @if $d != null { flex-direction: $d; }
+  @if $j != null { justify-content: $j; }
+  @if $a != null { align-items: $a; }
+  @if $w != null { flex-wrap: $w; }
+  @if $g != null { gap: $g; }
+}
+
+@mixin tag {
+  width: fit-content;
+  padding: 4px 20px;
+  border: 2px $orange_50 solid;
+  border-radius: $br_xxl;
+  
+  color: $orange_50;
+  font-weight: 500;
+}
+
+@keyframes loading {
+  0%   { background-color: hsl(200, 0%, 93%) }
+  100% { background-color: hsl(200, 0%, 98%) }
+}
+
+@mixin anim--loading {
+  animation: loading 1s linear infinite alternate;
+}
+
+@keyframes pulsing {
+  0%   { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
+
+@mixin anim--pulsing {
+  animation: pulsing 3s linear infinite alternate;
+}

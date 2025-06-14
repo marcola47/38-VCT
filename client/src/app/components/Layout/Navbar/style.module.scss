@@ -1,0 +1,136 @@
+@use "@/styles/vars.module.scss" as *;
+
+.navbar {
+  z-index: 999;
+  position: relative;
+  min-height: 84px;
+  padding: 16px 24px;
+
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px);
+  background-color: #ffffffdd;
+  @include transition;
+
+  &Loading {
+    .links {
+      width: 100%;
+      max-width: 420px;
+      height: 40px;
+    }
+  }
+
+  &Wrapper {
+    @include flexbox($j: space-between, $a: center, $g: 16px);
+   
+    z-index: -1;
+    position: fixed;
+    top: -94px;
+    width: $w12;
+    padding: 12px 24px;
+
+    &Open {
+      top: 0;
+      z-index: 5;
+    }
+  }
+
+  &Desktop {
+    @include flexbox($j: space-between);
+    position: fixed;
+    width: 100%;
+
+    .links {
+      @include flexbox($a: center);
+    }  
+  }
+
+  &Mobile {
+    @include flexbox($d: column, $a: center, $g: 64px);
+
+    position: fixed;
+    left: 0;
+    min-width: 360px;
+    height: 100dvh;
+    padding: 64px;
+
+    transform: translateX(-100%);
+    
+    &Open {
+      transform: translateX(0);
+    }
+
+    .links {
+      @include flexbox($d: column, $a: center);
+      
+      .link {
+        padding-block: 16px;
+      }
+    }
+  }
+
+  .logo {
+    @include flexbox($a: center);
+    user-select: none;
+
+    img {
+      width: 192px;
+      height: auto;
+    }  
+  }
+
+  .toggle {
+    width: 24px;
+    height: 24px;
+
+    font-size: 1.5rem;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      color: $purple_35;
+    }
+
+    &Close {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+    }
+  }
+
+  .links {    
+    .link {
+      @include flexbox($a: center, $g: 8px);
+
+      padding-inline: 16px;
+      color: $grey_15;
+      font-size: 1.25rem;
+      font-weight: 400 !important;
+      cursor: pointer;
+      @include transition;
+
+      &:hover {
+        color: $purple_45;
+      }
+
+      .icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    .separator {
+      width: 3px;
+      height: 66%;
+      border-radius: 2px;
+      background-color: $grey_85;
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .navbar {
+    &Mobile {
+      width: 100%;
+      min-width: none;
+    }
+  }
+}

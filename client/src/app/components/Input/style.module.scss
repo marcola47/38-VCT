@@ -1,0 +1,161 @@
+@use "@/styles/vars.module.scss" as *;
+@use "sass:color";
+
+.input {
+  @include flexbox($g: 6px);
+  
+  width: 100%;
+  position: relative;
+  border: 2px solid #00000000;
+
+  &Disabled .field {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .label {
+    padding-inline: 4px;
+    margin-left: -4px;
+
+    color: $grey-20;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .placeholderPersistant {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+
+    color: $grey-40;
+    font-size: 0.86rem;
+  }
+
+  .field {
+    width: 100%;
+    height: 100%;
+    margin-top: 0px;
+
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+
+  .icon {
+    display: grid;
+    place-items: center;
+    
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .toggle {
+    min-width: 16px;
+    margin-top: 2px;
+    
+    font-size: 1rem;
+    font-weight: 600;
+    
+    cursor: pointer;
+  }
+}
+
+.padding {
+  &No {
+    padding: 0px 0px;
+  }
+
+  &S {
+    padding: 4px 8px;
+  }
+  
+  &M {
+    padding: 8px 12px;
+  }
+  
+  &L {
+    padding: 12px 16px;
+  }
+}
+
+.labelPadding {
+  padding: 4px 16px 12px 16px;
+
+  .placeholderPersistant {
+    top: 40%;
+  }
+}
+
+//  WHY: only apply the margin-bottom if setError is provided, meaning that there can be errors.
+.errorMargin {
+  margin-bottom: 16px;
+}
+
+.shape {
+  &Square {
+    border-radius: $br_s;
+  }
+
+  &Squircle {
+    border-radius: $br_m;
+  }
+
+  &Circle {
+    border-radius: $br_xxl;
+  }
+}
+
+@each $color-name, $color-value in $colors-main {
+  $hue: color.channel($color-value, "hue", $space: hsl);
+  $saturation: color.channel($color-value, "saturation", $space: hsl);
+  
+  .color {
+    &#{ $color-name } {
+      &Border {
+        border-color: $color-value;
+      }
+
+      &Bg {
+        background-color: hsl($hue, $saturation, 85%);
+      }
+
+      .label {
+        color: $color-value;
+      }
+
+      .icon, .icon > *, .toggle {
+        color: $color-value;
+      }
+    }
+  }
+}
+
+.error {
+  border-color: $red_45;
+  background-color: $red_85;
+
+  &Message {
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+
+    display: -webkit-box; 
+    overflow: hidden; 
+    line-clamp: 1;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+
+    color: $red_45;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .label {
+    color: $red_45;
+  }
+
+  .icon, .icon > *, .toggle {
+    color: $red_45;
+  }
+}

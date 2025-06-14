@@ -1,0 +1,80 @@
+@use "@/styles/vars.module.scss" as *;
+
+.bg {
+  display: grid;
+  place-items: center;
+  
+  z-index: 1000;
+  position: fixed;
+  inset: 0;
+  width: 100dvw;
+  height: 100dvh;
+  padding-inline: 24px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &HasScrollbar {
+    padding-right: 32px;
+  }
+
+  .modal {
+    position: relative;
+    width: 460px;
+    padding: 32px;
+    border-radius: $br-m;
+    
+    background-color: #fff;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25);
+    
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+  
+      color: $grey-20;
+      cursor: pointer;
+    }
+  
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+  
+      margin-bottom: 24px;
+    }
+    
+    .message {
+      color: $grey-20;
+      text-align: center;
+    }
+  
+    .hl {
+      padding: 16px;
+      margin-top: 24px;
+      border-radius: $br-s;
+      background-color: $purple-85;
+  
+      &Yellow {
+        color: $yellow-25;
+        background-color: $yellow-75;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 528px) {
+  .bg {
+    .modal {
+      width: 100%
+    }  
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .bg {
+    padding-inline: 16px;
+  }
+}

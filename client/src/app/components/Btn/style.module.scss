@@ -1,0 +1,229 @@
+@use '@/styles/vars.module.scss' as *;
+@use "sass:color";
+
+.btn {
+  @include flexbox($a: center, $g: 8px);
+
+  padding: 12px 20px;
+  border: 2px solid #00000000;
+  border-radius: $br_s;
+
+  font-weight: 500;
+  cursor: pointer;
+  @include transition;
+
+  svg, img {
+    min-width: 16px;
+    @include transition;
+  }
+
+  .text {
+    user-select: none;
+  }
+}
+
+.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.padding {
+  &None {
+    padding: 0px 0px 0px 0px !important;
+  }
+  
+  &Small {
+    padding: 0px 8px;
+  }
+
+  &Mid {
+    padding: 4px 16px;
+  }
+
+  &Large {
+    padding: 12px 20px;
+  }
+
+  &Uniform {
+    padding: 8px;
+  }
+}
+
+.text {
+  &Small {
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    
+    svg, img {
+      font-size: 0.75rem;
+      line-height: 0.75rem;
+    }
+  }
+  
+  &Mid {
+    font-size: 1rem;
+    line-height: 1rem;
+    
+    svg, img {
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+  }
+  
+  &Large {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    
+    svg, img {
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  &Left {
+    justify-content: flex-start;
+  }
+
+  &Center {
+    justify-content: center;
+  }
+
+  &Right {
+    justify-content: flex-end;
+  }
+}
+
+.fullWidth {
+  width: $w12;
+}
+
+.circle {
+  border-radius: 64px;
+  padding: 12px 12px 12px 12px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+@each $color-name, $color-value in $colors-main {
+  .color {
+    &#{ $color-name } {
+      color: $color-value;
+    }
+  }
+
+  .bg {
+    &#{ $color-name } {
+      background-color: $color-value;
+    }
+  }
+
+  .border {
+    &#{ $color-name } {
+      border-color: $color-value;
+    }
+  }
+
+  .icon {
+    &#{ $color-name } {
+      svg {
+        color: $color-value;
+      }
+    }
+  }
+}
+
+.trans {
+  &Grow {
+    &Small {
+      &:hover {
+        transform: scale(1.02);
+      }
+  
+      &:active {
+        transform: scale(1);
+      }
+    }
+      
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+
+  @each $color-name, $color-value in $colors-main {
+    &Bg {
+      &#{ $color-name } {
+        &:hover {
+          color: #fff;
+          border-color: $color-value;
+          background-color: $color-value;
+    
+          svg {
+            color: #fff;
+          }
+        }
+    
+        &:active {
+          color: #fff;
+          border-color: color.adjust($color-value, $lightness: 10%);
+          background-color: color.adjust($color-value, $lightness: 10%);
+    
+          svg {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    &Border {
+      &#{ $color-name } {
+        &:hover {
+          border-color: $color-value;
+          color: $color-value;
+    
+          svg {
+            color: $color-value;
+          }
+        }
+    
+        &:active {
+          border-color: color.adjust($color-value, $lightness: 10%);
+          color: color.adjust($color-value, $lightness: 10%);
+    
+          svg {
+            color: color.adjust($color-value, $lightness: 10%);
+          }
+        }
+      }
+    }
+    
+    &Color {
+      &#{ $color-name } {
+        &:hover {
+          color: $color-value;
+    
+          svg {
+            color: $color-value;
+          }
+        }
+    
+        &:active {
+          color: color.adjust($color-value, $lightness: 10%);
+    
+          svg {
+            color: color.adjust($color-value, $lightness: 10%);
+          }
+        }
+      }
+    }    
+  }
+}

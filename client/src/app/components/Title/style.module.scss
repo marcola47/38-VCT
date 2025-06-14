@@ -1,0 +1,72 @@
+@use "@/styles/vars.module.scss" as *;
+@use "sass:color";
+
+.type {
+  &H1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3rem;
+  }
+
+  &H2 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+  }
+
+  &H3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+  }
+
+  &H4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+  }
+
+  &H5 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+  }
+}
+
+.align {
+  &Left {
+    text-align: left;
+  }
+
+  &Center {
+    text-align: center;
+  }
+
+  &Right {
+    text-align: right;
+  }
+}
+
+.thin {
+  font-weight: 500;
+}
+
+.padding {
+  padding-inline: 32px;
+}
+
+@each $color-name, $color-value in $colors-main {
+  .color {
+    &#{ $color-name } {
+      color: $color-value;
+
+      &Light {
+        color: color.adjust($color-value, $lightness: 30%);
+      }
+      
+      &Dark {
+        color: color.adjust($color-value, $lightness: -15%);
+      }
+    }
+  }
+}
