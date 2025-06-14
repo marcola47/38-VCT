@@ -95,5 +95,37 @@
         }
       }
     }
+
+    .create {
+      @include flexbox($d: column, $g: 12px);
+      
+      max-width: 768px;
+      margin-inline: auto;
+      margin-top: 32px;
+      
+      .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+
+        .key {
+          &Name {
+            grid-column: span 2;
+          }
+
+          &Value {
+            grid-column: span 1;
+          }
+
+          &Type {
+            grid-column: span 1;
+          }
+        }
+
+        .btn {
+          grid-column: span 2;
+        }
+      }
+    }
   }
 }

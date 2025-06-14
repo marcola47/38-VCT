@@ -1,18 +1,18 @@
 "use client"
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPortal } from "react-dom";
+import Link from "next/link";
+import { toast } from "sonner";
 import { FaSlack, FaEnvelope, FaRegTrashCan } from "react-icons/fa6";
 
-import { Btn, ModalConfirmation, Title } from "@/app/components";
+import { Btn, Input, ModalConfirmation, Selector, Title } from "@/app/components";
 
 import clsx from "clsx";
 import app from "@/styles/app.module.scss";
 import s from "./style.module.scss";
-import Link from "next/link";
-import { toast } from "sonner";
 
-const projects: any[] = [
+const projectsMock: any[] = [
   {
     id: "1",
     name: "Projeto 1",
@@ -45,7 +45,7 @@ const projects: any[] = [
   },
 ]
 
-const integrations: any[] = [
+const integrationsMock: any[] = [
   {
     id: "1",
     name: "Slack - test 1",
@@ -64,15 +64,52 @@ const integrations: any[] = [
 ]
 
 export default function Home() {  
+  const queryClient = useQueryClient();
+  
   const [modalDeleteShown, setModalDeleteShown] = useState<boolean>(false);
+  const [integrationToDelete, setIntegrationToDelete] = useState<string>("");
 
-  const integrationMutation = useMutation<void, Error>({
+  const [keyName, setKeyName] = useState<string>("");
+  const [keyValue, setKeyValue] = useState<string>("");
+  const [keyType, setKeyType] = useState<"slack" | "gmail" | null>(null);
+
+  const projects = useQuery({
+    queryKey: ["projects"],
+    queryFn: fetchProjects,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  })
+
+  const integrations = useQuery({
+    queryKey: ["integrations"],
+    queryFn: fetchIntegrations,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  })
+
+  const integrationDeleteMutation = useMutation<void, Error>({
     mutationFn: deleteIntegration,
     onError: () => toast.error("Ocorreu um erro ao excluir integração"),
     onSuccess: () => {
       setModalDeleteShown(false);
       toast.success("Integração deletada com sucesso!");
-      // invalidate query
+      queryClient.invalidateQueries({ queryKey: ["integrations"] })
+    }
+  })
+
+  const integrationCreateMutation = useMutation<void, Error>({
+    mutationFn: createIntegration,
+    onError: () => toast.error("Ocorreu um erro ao criar integração"),
+    onSuccess: () => {
+      setKeyName("");
+      setKeyValue("");
+      setKeyType(null);
+      setModalDeleteShown(false);
+
+      toast.success("Integração criada com sucesso!");
+      queryClient.invalidateQueries({ queryKey: ["integrations"] })
     }
   })
   
@@ -85,7 +122,7 @@ export default function Home() {
             type="danger"
             title="Você tem certeza que deseja excluir esta integração?"
             message="Todos canais usados não serão mais acompanhados"
-            onConfirm={ integrationMutation.mutate }
+            onConfirm={ integrationDeleteMutation.mutate }
             onConfirmMessage="SIM"
             onCancel={ () => setModalDeleteShown(false) }
             onCancelMessage="NÃO"
@@ -104,7 +141,7 @@ export default function Home() {
 
         <div className={ s.list }>
           {
-            projects.map(project => (
+            projectsMock.map(project => (
               <Project
                 key={ project.id }
                 project={ project }
@@ -134,13 +171,65 @@ export default function Home() {
 
         <div className={ s.list }>
           {
-            integrations.map(integration => (
+            integrationsMock.map(integration => (
               <Integration
                 key={ integration.id }
                 integration={ integration }
               />
             ))
           }
+        </div>
+
+        <div className={ s.create }>
+          <Title
+            typeSeo={ 2 }
+            typeStyle={ 2 }
+            color="purple"
+            text="CADASTRAR NOVA INTEGRAÇÃO"
+          />
+          
+          <div className={ s.form }>
+            <Input
+              type="text"
+              name="keyName"
+              id={ s.keyName }
+              value={ keyName }
+              setValue={ setKeyName }
+              label="Nome da chave"
+              color="purple"
+              overrideClasses={ s.keyName }
+            />
+            <Input
+              type="password"
+              name="keyValue"
+              id={ s.keyValue }
+              value={ keyValue }
+              setValue={ setKeyValue }
+              label="Chave"
+              color="purple"
+              overrideClasses={ s.keyValue }
+            />
+
+            <Selector
+              items={["slack", "gmail"]}
+              setItem={ setKeyType }
+              removable={ false }
+              color="purple"
+              label="Tipo de integração"
+              overrideClasses={ s.keyType }
+            />
+
+            <Btn
+              type="button"
+              onClick={ integrationCreateMutation.mutate }
+              loading={ integrationCreateMutation.isPending }
+              color="white"
+              bgColor="purple"
+              text="CRIAR INTEGRAÇÃO"
+              transition="growSmall"
+              overrideClasses={ s.btn }
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -183,13 +272,71 @@ export default function Home() {
 
         <FaRegTrashCan 
           className={ s.delete }
-          onClick={ () => setModalDeleteShown(true) }
+          onClick={
+            () => {
+              setModalDeleteShown(true);
+              setIntegrationToDelete(integration.id)
+            }
+          }
         />
       </div>
     )
   }
 
-  async function deleteIntegration() {
+  async function fetchProjects() {
+    const res = await fetch("", {
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+
+    if (!res.ok)
+      throw new Error("Ocorreu um erro ao buscar projetos");
+
+    const { data } = await res.json();
+    return data;
+  }
+
+  async function fetchIntegrations() {
+    const res = await fetch("", {
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+
+    if (!res.ok)
+      throw new Error("Ocorreu um erro ao buscar projetos");
     
+    const { data } = await res.json();
+    return data;
+  }
+
+  async function createIntegration() {
+    const res = await fetch("", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        keyName,
+        keyValue,
+        keyType
+      })
+    })
+
+    if (!res.ok)
+      throw new Error("Ocorreu um erro ao deletar integração");
+  }
+
+  async function deleteIntegration() {
+    const res = await fetch(`${integrationDeleteMutation}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json"
+      },
+    })
+
+    if (!res.ok)
+      throw new Error("Ocorreu um erro ao deletar integração");
   }
 }
