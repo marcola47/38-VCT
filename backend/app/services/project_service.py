@@ -2,12 +2,26 @@ from fastapi import HTTPException, UploadFile
 from typing import List
 from supabase import Client
 import httpx
-from app.models.project import ProjectListItem, ProjectOut, RagRequest, RagResponse, ChatContextRequest, ChatContextResponse, ProjectCreate
+import base64
+
+from app.models.project import (
+    ProjectListItem,
+    ProjectOut,
+    RagRequest,
+    RagResponse,
+    ChatContextRequest,
+    ChatContextResponse,
+    ProjectCreate
+)
 
 N8N_RAG_URL = "https://leodaveiga.site/webhook/message-post"
 N8N_ROADMAP_URL = "https://leodaveiga.site/webhook/roadmap-maker"
 N8N_POPULATE_RAG_URL = "https://leodaveiga.site/webhook/populate-rag"
 N8N_SATISFACTION_URL = "https://leodaveiga.site/webhook/satisfaction"
+
+N8N_AUTH_HEADER = {
+    "Authorization": "Basic " + base64.b64encode(b"app_name:vct123").decode("utf-8")
+}
 
 def list_projects_service(db: Client):
     try:
@@ -94,6 +108,7 @@ async def upload_files_service(project_id: int, files: List[UploadFile], db: Cli
                     N8N_POPULATE_RAG_URL,
                     files={"data": (upload_file.filename, file_bytes, upload_file.content_type)},
                     data={"type": file_type, "project_id": str(project_id)},
+                    headers=N8N_AUTH_HEADER,
                     timeout=60
                 )
                 n8n_response.raise_for_status()
@@ -110,13 +125,11 @@ async def upload_files_service(project_id: int, files: List[UploadFile], db: Cli
 
 async def get_project_service(project_id: int, db: Client):
     try:
-        # Buscar o projeto
         proj_result = db.table("project").select("*").eq("id", project_id).execute()
         if not proj_result.data:
             raise HTTPException(status_code=404, detail="Projeto não encontrado.")
         project = proj_result.data[0]
 
-        # Buscar canais
         channels_result = db.table("channel").select("*, integration(type), channel_email(email)").eq("project_id", project_id).execute()
         channels = [{
             "id": chan["id"],
@@ -127,7 +140,6 @@ async def get_project_service(project_id: int, db: Client):
             "emails": [e["email"] for e in chan.get("channel_email", [])]
         } for chan in channels_result.data]
 
-        # Buscar mensagens
         messages_result = db.table("messages").select("id, user_message, ai_response").eq("project_id", project_id).order("id", desc=True).limit(10).execute()
         messages = [{
             "id": msg["id"],
@@ -135,7 +147,6 @@ async def get_project_service(project_id: int, db: Client):
             "ai_response": msg["ai_response"]
         } for msg in messages_result.data]
 
-        # Buscar arquivos
         files_result = db.table("file").select("id, file_name, path").eq("project_id", project_id).execute()
         files = [{
             "id": f["id"],
@@ -143,17 +154,17 @@ async def get_project_service(project_id: int, db: Client):
             "path": f["path"]
         } for f in files_result.data]
 
-        # Buscar roadmap
         roadmap_result = db.table("roadmap").select("roadmap").eq("project_id", project_id).execute()
         roadmap = roadmap_result.data[0]["roadmap"] if roadmap_result.data else None
 
-        # Buscar satisfação no n8n
         async with httpx.AsyncClient() as client:
             n8n_response = await client.post(
                 N8N_SATISFACTION_URL,
                 json={"project_id": project_id},
+                headers=N8N_AUTH_HEADER,
                 timeout=30
             )
+            n8n_response.raise_for_status()
             n8n_data = n8n_response.json()
 
         return {
@@ -171,13 +182,16 @@ async def get_project_service(project_id: int, db: Client):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao buscar projeto: {e}")
 
-
 async def chat_with_rag_service(rag_request: RagRequest, db: Client):
     try:
         async with httpx.AsyncClient() as client:
             n8n_response = await client.post(
                 N8N_RAG_URL,
-                json={"project_id": rag_request.project_id, "user_message": rag_request.user_message},
+                json={
+                    "project_id": rag_request.project_id,
+                    "user_message": rag_request.user_message
+                },
+                headers=N8N_AUTH_HEADER,
                 timeout=30
             )
             n8n_response.raise_for_status()
@@ -191,7 +205,11 @@ async def send_chat_context_service(payload: ChatContextRequest, db: Client):
         async with httpx.AsyncClient() as client:
             n8n_response = await client.post(
                 N8N_ROADMAP_URL,
-                json={"project_id": payload.project_id, "user_message": payload.user_message},
+                json={
+                    "project_id": payload.project_id,
+                    "user_message": payload.user_message
+                },
+                headers=N8N_AUTH_HEADER,
                 timeout=30
             )
             n8n_response.raise_for_status()
