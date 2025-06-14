@@ -9,7 +9,7 @@ export default function NotFound() {
       <Title
         typeSeo={ 1 }
         typeStyle={ 1 }
-        color="purple"
+        color="blue"
         align="center"
         text="PÁGINA NÃO ENCONTRADA"
       />
@@ -21,7 +21,7 @@ export default function NotFound() {
       <Btn
         type="link"
         href="/"
-        bgColor="purple"
+        bgColor="blue"
         color="white"
         text="VOLTAR PARA O INÍCIO"
         fullWidth

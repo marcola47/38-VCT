@@ -1,7 +1,6 @@
 import { Btn } from "./Btn";
 import { Input } from "./Input";
 import { Checkbox } from "./Checkbox";
-import { ErrorBlock } from "./Layout/ErrorBlock";
 import { ErrorPage } from "./Layout/ErrorPage";
 import { Navbar } from "./Layout/Navbar";
 import { ModalBase } from "./Modal";
@@ -13,7 +12,6 @@ export {
   Btn,
   Checkbox,
   Input,
-  ErrorBlock,
   ErrorPage,
   Navbar,
   ModalBase,

@@ -12,7 +12,7 @@ export default function Page() {
         typeSeo={ 1 }
         typeStyle={ 1 }
         text="REALIZE SEU LOGIN"
-        color="black"
+        color="blue"
         align="center"
       />
       <Form/>

@@ -20,7 +20,7 @@ export async function login(props: LoginProps) {
     return { error };
 
   revalidatePath("/", "layout");
-  redirect("/dashboard");
+  redirect("/");
 }
 
 export async function signup(formData: FormData) {

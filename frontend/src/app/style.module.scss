@@ -2,517 +2,97 @@
 
 .page {
   @include flexbox($d: column, $g: 64px);
-  padding-top: 0px !important;
+  @include container(1280px, true, 0px);
+ 
+  .projects {
+    @include flexbox($d: column, $g: 24px);
+    
+    .list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
 
-  .hero {
-    overflow: hidden;
-    width: 100%;
-    height: 600px;
-    padding-block: 184px 64px;
+      .project {
+        padding: 32px;
+        border: 3px solid   $blue_40;
+        border-radius: $br_m;
+        @include transition;
 
-    background: linear-gradient(90deg, $purple_45 25%, transparent 75%);
+        color: $blue_35;
 
-    .wrapper {
-      position: relative;
-      @include container(1280px, true);
-
-      .content {        
-        @include flexbox($d: column, $g: 32px);
-        width: 640px;
-        
-        .title {
-          font-size: 4rem;
-          line-height: 4rem;
-        }
-  
-        .paragraph {
+        &:hover {
           color: #fff;
-          font-size: 1.5rem;
-          font-weight: 500;
-          line-height: 1.8rem;
-        }  
-      }
-  
-      .illustration {
-        z-index: -1;
-        position: absolute;
-        top: -64px;
-        right: 32px;
-        width: 640px;
-  
-        img {
-          object-fit: cover;
-          max-width: 100%;
-          height: 100%;
+          background-color: $blue_40;
         }
-      }  
-    }
-  }
-
-  .how {
-    @include flexbox($a: center, $g: 32px);
-    @include container;
-
-    .content {
-      @include flexbox($d: column, $g: 16px);
-      
-      .label {
-        @include tag;
-      }
-
-      .paragraph {
-        font-size: 1.25rem;
-      }
-    }
-
-    .illustration {
-      width: 100%;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    place-items: center;
-    gap: 24px;
-
-    @include container;
-
-    .step {
-      @include flexbox($d: column, $j: flex-start, $a: center, $g: 16px);
-      position: relative;
-      width: 176px;
-
-      .label {
-        position: relative;
-        @include tag;
-
-        .number {
-          display: grid;
-          place-items: center;
-          
-          position: absolute;
-          bottom: -16px;
-          right: -16px;
-          width: 32px;
-          height: 32px;
-          border-radius: $br_c;
-          
-          color: #fff;
-          background-color: $orange_50;
-  
-          font-size: 1rem;
-          font-weight: 500;
-        }
-      }
-
-      .text {
-        font-weight: 500;
-        text-align: center;
-      }
-    }
-  }
-
-  .choose {
-    @include flexbox($a: center, $g: 32px);
-    @include container;
-    
-    .illustration {
-      width: 100%;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    .content {
-      @include flexbox($d: column, $g: 16px);
-
-      .cards {
-        @include flexbox($g: 16px);
         
-        .card {  
-          @include flexbox($d: column, $g: 8px);
-  
-          position: relative;
-          width: 336px;
-          padding: 32px;
-          border-radius: $br_m;
-  
-          background-color: #fff;
-          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-  
-          &1 {
-            .title {
-              @include flexbox($d: column);
-              padding-inline: 48px;
-              line-height: 2rem;
-
-              & > :first-child {
-                align-self: flex-start;
-                color: $orange_50;
-              }
-              
-              & > :last-child {
-                align-self: flex-end;
-                font-size: 1.25rem;
-              }
-            }
-          }
-  
-          &2 {
-            .title {
-              @include flexbox($d: column);
-              padding-inline: 32px;
-              line-height: 2rem;
-
-              & > :first-child {
-                align-self: flex-start;
-                font-size: 1.25rem;
-              }
-              
-              & > :last-child {
-                align-self: flex-end;
-                color: $orange_50;
-              }
-            }
-          }
-
-          .text {
-            text-align: center;
-          }
-
-          .triangle {
-            position: absolute;
-            bottom: 36px;
-            right: 12px;
-
-            &::after {
-              content: "";
-              position: absolute;
-              top: 0px;
-              right: 0px;
-              width: 0px;
-              height: 0px;
-              border-left: 20px solid transparent;
-              border-bottom: 20px solid $orange_50;
-              border-bottom-right-radius: $br_xs;
-            }
-          }
-        }
-      }
-    }  
-  }
-
-  .services {
-    position: relative;
-    
-    .gradient {
-      z-index: -1;
-      position: absolute;
-      inset: 0;
-      top: 304px;
-      width: 100%;
-      height: calc(100% - 304px);
-      background: linear-gradient(180deg, $purple_45 25%, transparent 100%);
-    }
-    
-    .wrapper {
-      @include flexbox($d: column, $a: center, $g: 32px);
-      @include container;
-
-      .header {
-        @include flexbox($d: column, $a: center, $g: 8px);
-        
-        .label {
-          @include tag;
-        }
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-
-        width: 100%;
-
-        > *:nth-last-child(-n+4) {
-          justify-self: center;
-        }
-      }
-    }
-  }
-
-  .testimonials {
-    @include flexbox($d: column, $a: center, $g: 32px);
-    @include container;
-
-    .testimonial {
-      @include flexbox($g: 12px);
-
-      height: calc(100% - 32px);
-      padding: 24px;
-      border-radius: $br_m;
-
-      color: #fff;
-
-      &0 { background: linear-gradient(145deg, hsl(289, 92%, 64%) 0%, hsl(277, 60%, 44%) 100%); }
-      &1 { background: linear-gradient(160deg, hsl(255, 65%, 50%) 0%, hsl(275, 60%, 42%) 100%); }
-      &2 { background: linear-gradient(135deg, hsl(205, 60%, 44%) 0%, hsl(275, 55%, 50%) 100%); }
-      &3 { background: linear-gradient(220deg, hsl(290, 85%, 60%) 0%, hsl(280, 55%, 45%) 100%); }
-      &4 { background: linear-gradient(95deg, hsl(250, 70%, 50%) 0%, hsl(270, 60%, 42%) 100%); }
-      &5 { background: linear-gradient(75deg, hsl(210, 65%, 45%) 0%, hsl(265, 50%, 48%) 100%); }
-
-      .img {
-        min-width: 164px;
-        border-radius: $br_s;
-        
-        object-fit: cover;
-        pointer-events: none;
-        cursor: grab;
-      }
-
-      .data {
-        @include flexbox($d: column, $g: 4px);
-
-        .rating {
-          @include flexbox($g: 2px);
-          color: $yellow_55;
+        &:active {
+          background-color: $blue_45;
         }
 
         .name {
+          font-size: 2rem;
           font-weight: 600;
-          font-size: 1.5rem;
         }
 
-        .content {          
-          display: -webkit-box; 
-          overflow: hidden; 
-          line-clamp: 7;
-          -webkit-line-clamp: 7; 
-          -webkit-box-orient: vertical;
+        .desc {
+          font-size: 1.25rem;
+          font-weight: 500;
         }
       }
+    }
+
+    .btn {
+      align-self: center;
+      width: 100%;
+      max-width: 512px;
     }
   }
 
-  .supplier {
-    @include flexbox($a: center, $g: 32px);
-    @include container;
+  .integrations {
+    @include flexbox($d: column, $g: 24px);
 
-    .content {
-      @include flexbox($d: column, $g: 16px);
-      max-width: 560px;
+    .list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
 
-      .title {
-        .big {
-          font-size: 4rem;
-          line-height: 6rem;
-        }
-      }
-      
-      .btns {
-        @include flexbox($d: column, $g: 12px);
-        width: 100%;
-      }
-    }
-
-    .illustration {
       width: 100%;
 
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .page {
-    .choose {
-      @include flexbox($d: column-reverse);
-
-      .illustration {
-        max-width: 768px; 
-      }
-
-      .content {
-        max-width: 768px;
-
-        .cards {
-          .card {
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .page {
-    .hero {
-      background: linear-gradient(90deg, $purple_45 33%, transparent 100%);
-    }
-
-    .how {
-      @include flexbox($d: column, $j: center);
-
-      .content {
-        @include flexbox($d: column, $a: center);
+      .integration {
+        @include flexbox($a: center, $g: 12px);
         
-        .title, .paragraph {
-          text-align: center;
-        }
-      }
+        padding: 24px;
+        border: 3px solid $purple_40;
+        border-radius: $br_m;
+        @include transition;
 
-      .illustration {
-        max-width: 768px;
-      }
-    }
+        color: $purple_35;
 
-    .steps {
-      grid-template-columns: 1fr 1fr;
-      column-gap: 64px;
-      row-gap: 96px;
-
-      width: fit-content;
-      margin-inline: auto;
-    }
-
-    .services {
-      .wrapper {
-        .grid {
-          grid-template-columns: repeat(3, 1fr);
-        }  
-      }
-    }
-
-    .supplier {
-      @include flexbox($d: column, $j: center);
-
-      .content {
-        @include flexbox($d: column, $a: center);
-        
-        .title, .paragraph {
-          text-align: center;
-        }
-      }
-
-      .illustration {
-        max-width: 768px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 912px) {
-  .page {
-    .services {
-      .wrapper {
-        .grid {
-          grid-template-columns: 1fr 1fr;
-        }  
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .page {
-    .title {
-      font-size: 2rem;
-      line-height: 2.2rem;
-      text-align: center !important;
-
-      .big {
-        font-size: 3rem;
-        line-height: 4rem;
-      }
-    }
-
-    .hero {
-      height: fit-content;
-      padding-block: 128px 32px;
-      background-color: $purple_45;
-
-      .wrapper {
-        .content {
-          width: 100%;
+        .type {
+          display: grid;
+          place-items: center;
           
-          .title {
-            font-size: 3rem;
-            text-align: center;
-          }
-
-          .paragraph {
-            text-align: center;
+          .icon {
+            font-size: 2rem;
           }
         }
-      }
-    }
 
-    .how {
-      .content {
-        .paragraph {
-          font-size: 1rem;
+        .name {
+          font-size: 1.25rem;
+          font-weight: 600;
         }
-      }
-    }
 
-    .choose {
-      .content {
-        .cards {
-          @include flexbox($d: column);
+        .delete {
+          color: $red_45;
+          font-size: 1.5rem;
+          margin-left: auto;
+          cursor: pointer;
+          @include transition;
 
-          .card {
-            width: 100%;
-            max-width: 420px;
-
-            .title {
-              padding-inline: 0px;
-
-              & > * {
-                align-self: center !important;
-              }
-            }
+          &:hover {
+            color: $red_55;
           }
         }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .page {
-    .hero {
-      .wrapper {
-        .content {
-          .paragraph {
-            font-size: 1rem;
-            line-height: 1.1rem;
-          }
-        }
-      }
-    }
-
-    .steps {
-      grid-template-columns: 1fr;
-      row-gap: 64px;
-    }
-
-    .services {
-      .wrapper {
-        .grid {
-          grid-template-columns: 1fr;
-        }  
       }
     }
   }
