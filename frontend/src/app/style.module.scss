@@ -68,13 +68,8 @@
 
         color: $purple_35;
 
-        .type {
-          display: grid;
-          place-items: center;
-          
-          .icon {
-            font-size: 2rem;
-          }
+        .icon {
+          font-size: 2rem;
         }
 
         .name {
@@ -99,6 +94,7 @@
     .create {
       @include flexbox($d: column, $g: 12px);
       
+      width: 100%;
       max-width: 768px;
       margin-inline: auto;
       margin-top: 32px;
@@ -107,20 +103,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 12px;
-
-        .key {
-          &Name {
-            grid-column: span 2;
-          }
-
-          &Value {
-            grid-column: span 1;
-          }
-
-          &Type {
-            grid-column: span 1;
-          }
-        }
 
         .btn {
           grid-column: span 2;

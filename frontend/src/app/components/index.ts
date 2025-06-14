@@ -6,6 +6,7 @@ import { Navbar } from "./Layout/Navbar";
 import { ModalBase } from "./Modal";
 import { ModalConfirmation } from "./Modal/Confirmation";
 import { Selector } from "./Selector";
+import Textarea from "./Textarea";
 import { Title } from "./Title";
 
 export {
@@ -17,5 +18,6 @@ export {
   ModalBase,
   ModalConfirmation,
   Selector,
+  Textarea,
   Title,
 }

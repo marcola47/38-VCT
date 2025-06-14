@@ -4,9 +4,9 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { toast } from "sonner";
-import { FaSlack, FaEnvelope, FaRegTrashCan } from "react-icons/fa6";
+import { FaSlack, FaRegTrashCan } from "react-icons/fa6";
 
-import { Btn, Input, ModalConfirmation, Selector, Title } from "@/app/components";
+import { Btn, Input, ModalConfirmation, Title } from "@/app/components";
 
 import clsx from "clsx";
 import app from "@/styles/app.module.scss";
@@ -49,17 +49,14 @@ const integrationsMock: any[] = [
   {
     id: "1",
     name: "Slack - test 1",
-    type: "slack",
   },
   {
     id: "2",
     name: "Slack - test 2",
-    type: "slack",
   },
   {
     id: "3",
-    name: "Gmail - test 1",
-    type: "gmail",
+    name: "Slack - test 3",
   },
 ]
 
@@ -71,7 +68,6 @@ export default function Home() {
 
   const [keyName, setKeyName] = useState<string>("");
   const [keyValue, setKeyValue] = useState<string>("");
-  const [keyType, setKeyType] = useState<"slack" | "gmail" | null>(null);
 
   const projects = useQuery({
     queryKey: ["projects"],
@@ -105,7 +101,6 @@ export default function Home() {
     onSuccess: () => {
       setKeyName("");
       setKeyValue("");
-      setKeyType(null);
       setModalDeleteShown(false);
 
       toast.success("Integração criada com sucesso!");
@@ -186,6 +181,7 @@ export default function Home() {
             typeStyle={ 2 }
             color="purple"
             text="CADASTRAR NOVA INTEGRAÇÃO"
+            align="center"
           />
           
           <div className={ s.form }>
@@ -208,15 +204,6 @@ export default function Home() {
               label="Chave"
               color="purple"
               overrideClasses={ s.keyValue }
-            />
-
-            <Selector
-              items={["slack", "gmail"]}
-              setItem={ setKeyType }
-              removable={ false }
-              color="purple"
-              label="Tipo de integração"
-              overrideClasses={ s.keyType }
             />
 
             <Btn
@@ -255,16 +242,7 @@ export default function Home() {
   function Integration({ integration }: { integration: any }) {
     return (
       <div className={ s.integration }>
-        <div className={ s.type }>
-          {
-            integration.type === "slack" &&
-            <FaSlack className={ s.icon }/>
-          }
-          {
-            integration.type === "gmail" &&
-            <FaEnvelope className={ s.icon }/>
-          }
-        </div>
+        <FaSlack className={ s.icon }/>
         
         <div className={ s.name }>
           { integration.name }
@@ -320,7 +298,7 @@ export default function Home() {
       body: JSON.stringify({
         keyName,
         keyValue,
-        keyType
+        keyType: "slack"
       })
     })
 
