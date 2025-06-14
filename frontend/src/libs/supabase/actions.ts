@@ -14,10 +14,15 @@ export async function login(props: LoginProps) {
   const { email, password } = props;
   const supabase = await createClient()
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password })
+  const { error, data } = await supabase.auth.signInWithPassword({ email, password })
+  const accessToken = data.session?.access_token;
 
   if (error)
     return { error };
+
+  if (accessToken) {
+    supabase.auth.setSession({ access_token: accessToken, refresh_token: data.session?.refresh_token });
+  }
 
   revalidatePath("/", "layout");
   redirect("/");

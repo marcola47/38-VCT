@@ -79,8 +79,9 @@ De maneira a criar um Roadmap de funcionalidades, que permita o acompanhamento d
    ```
 6. Execute o frontend:
    ```bash
-   cd frontend
-   npm run dev
+    cd frontend
+    npm run build
+    npm run start
    ```
 
 
