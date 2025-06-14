@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { FaChevronRight, FaFile, FaPlus, FaRegTrashCan, FaXmark } from "react-icons/fa6";
 
@@ -9,6 +9,7 @@ import clsx from "clsx";
 import app from "@/styles/app.module.scss";
 import s from "./style.module.scss";
 import { useRouter } from "next/navigation";
+import { getAccessToken } from "@/libs/supabase/client"
 
 type Channel = {
   id: string,
@@ -34,6 +35,21 @@ export default function Page() {
       router.push(`/projeto/${id}`)  
     }
   })
+
+  useEffect(() => {
+    async function fetchProjects() {
+      const accessToken = await getAccessToken();
+      const res = await fetch("http://164.152.244.34:8000/api/v1/projects", {
+        headers: {
+          "Content-type": "application/json",
+          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
+        }
+      });
+      const data = await res.json();
+      console.log("Projetos da API:", data);
+    }
+    fetchProjects();
+  }, []);
 
   return (
     <div className={ clsx(app.page, s.page) }>
@@ -276,10 +292,20 @@ export default function Page() {
   }
 
   async function createProject() {
+<<<<<<< Updated upstream
     const resData = await fetch("https://vctapi.marcola.shop/api/v1/projects", {
+=======
+<<<<<<< HEAD
+    const accessToken = await getAccessToken();
+    const resData = await fetch("", {
+=======
+    const resData = await fetch("https://vctapi.marcola.shop/api/v1/projects", {
+>>>>>>> fb1f229fea27df61415b755c7a1be684fdcd6adf
+>>>>>>> Stashed changes
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       },
       body: JSON.stringify({
         project_name: name,
@@ -303,6 +329,9 @@ export default function Page() {
 
     const resFiles = await fetch(`${id}`, {
       method: "PUT",
+      headers: {
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
+      },
       body: formData,
     })
 

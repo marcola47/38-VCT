@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { FaSlack, FaRegTrashCan } from "react-icons/fa6";
 
 import { Btn, Input, ModalConfirmation, Title } from "@/app/components";
+import { getAccessToken } from "@/libs/supabase/client"
 
 import clsx from "clsx";
 import app from "@/styles/app.module.scss";
@@ -262,9 +263,11 @@ export default function Home() {
   }
 
   async function fetchProjects() {
+    const accessToken = await getAccessToken();
     const res = await fetch("", {
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       }
     })
 
@@ -276,9 +279,11 @@ export default function Home() {
   }
 
   async function fetchIntegrations() {
+    const accessToken = await getAccessToken();
     const res = await fetch("", {
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       }
     })
 
@@ -290,10 +295,12 @@ export default function Home() {
   }
 
   async function createIntegration() {
+    const accessToken = await getAccessToken();
     const res = await fetch("", {
       method: "DELETE",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       },
       body: JSON.stringify({
         keyName,
@@ -307,10 +314,12 @@ export default function Home() {
   }
 
   async function deleteIntegration() {
+    const accessToken = await getAccessToken();
     const res = await fetch(`${integrationDeleteMutation}`, {
       method: "DELETE",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       },
     })
 

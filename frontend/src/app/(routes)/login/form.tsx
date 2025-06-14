@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query"
 import { AuthError } from "@supabase/supabase-js"
 import { toast } from "sonner"
 
-import { login } from "@/libs/supabase/actions"
+import { createClient } from "@/libs/supabase/client"
 import { Btn, Input } from "@/app/components"
 
 import s from "./style.module.scss"
@@ -59,11 +59,14 @@ export function Form() {
   )
 
   async function handleLogin() {
-    const { error } = await login({ email, password });
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
       toast.error("Email ou senha inválidos. Verifique seus dados e tente novamente.")
       throw new AuthError(error.message);
+    } else {
+      window.location.href = "/";
     }
   }
 }
