@@ -5,7 +5,7 @@ import clsx from "clsx";
 import app from "@/styles/app.module.scss";
 
 type ErrorPageProps = {
-  error: AppErrorOptions,
+  error: Error,
   reset?: () => void,
 }
 
@@ -33,7 +33,7 @@ export function ErrorPage(props: ErrorPageProps) {
             
             <strong>
               &nbsp;
-              { error.code || "unknown.error" }
+              { "unknown.error" }
             </strong>
           </div>
 
@@ -44,7 +44,7 @@ export function ErrorPage(props: ErrorPageProps) {
             
             <strong>
               &nbsp;
-              { error.status }
+              { 500 }
             </strong>
           </div>
         </div>

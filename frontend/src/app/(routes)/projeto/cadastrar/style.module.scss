@@ -1,0 +1,133 @@
+@use "@/styles/vars.module.scss" as *;
+
+.page {
+  @include flexbox($d: column, $g: 32px);
+  @include container(1024px, true, 0px);
+
+  .form {
+    @include flexbox($d: column, $g: 32px);
+
+    .textData {
+      @include flexbox($d: column, $g: 16px);
+    }
+    
+    .files {
+      @include flexbox($d: column, $g: 16px);
+      
+      .upload {
+        @include flexbox($g: 12px);
+        
+        .btn {
+          display: grid;
+          place-items: center;
+          
+          width: 96px;
+          height: 128px;
+          
+          background-color: $grey_85;
+          border-radius: $br_m;
+          cursor: pointer;
+          
+          &:hover {
+            .icon {
+              transform: scale(1.05);
+            }
+          }
+          
+          .icon {
+            font-size: 3rem;
+            @include transition;
+          }
+        }
+      }
+
+      .file {
+        @include flexbox($d: column, $j: center, $a: center, $g: 8px);
+        position: relative;
+
+        width: 96px;
+        height: 128px;
+        padding: 8px;
+        border-radius: $br_m;
+        background-color: $blue_85;
+        cursor: pointer;
+
+        &:hover {
+          .delete {
+            color: $red_40;
+          }
+        }
+
+        .icon {
+          font-size: 2.5rem;
+        }
+
+        .name {
+          word-break: break-all;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          text-align: center;
+          line-height: 1.2;
+        }
+
+        .delete {
+          position: absolute;
+          top: 4px;
+          right: 4px;
+
+          font-size: 1.25rem;
+          @include transition;
+        }
+      }
+    }
+
+    .integrations {
+      @include flexbox($d: column, $g: 16px);
+      
+      .create {
+        display: grid;
+        grid-template-columns: 1fr 1fr 192px 64px;
+        gap: 12px;
+
+        .btns {
+          @include flexbox($g: 4px);
+
+          .btn {
+            width: 100%;
+          }
+        }
+
+        .btn {
+          place-self: end start;
+          height: calc(100% - 8px);
+        }
+      }
+
+      .list {
+        @include flexbox($d: column, $g: 12px);
+        
+        .channel {
+          @include flexbox($a: center, $g: 12px);
+          padding: 16px 24px;
+          border: 2px solid $purple_40;
+          border-radius: $br_m;
+          font-size: 1.25rem;
+
+          .delete {
+            color: $red_45;
+            font-size: 1.5rem;
+            margin-left: auto;
+            cursor: pointer;
+            @include transition;
+
+            &:hover {
+              color: $red_55;
+            }
+          }
+        }
+      }
+    }
+  }
+}
