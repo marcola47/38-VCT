@@ -78,6 +78,11 @@ De maneira a criar um Roadmap de funcionalidades, que permita o acompanhamento d
    docker build -t vctapi-app .
    docker run -d --name vctapi-container -p 8000:8000 vctapi-app
    ```
+   5.1 Estrutura de projeto:
+   -  /api/v1: Local onde estão definidas as APIs, os controllers;
+   -  /models: Onde estão definidos todos os objetos usados nas requisições internas e externas;
+   -  /services: Camada de regra de negócio, busca e alteração de dados.
+
 6. Execute o frontend:
    ```bash
     cd frontend
