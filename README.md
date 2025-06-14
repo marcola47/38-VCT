@@ -75,7 +75,8 @@ De maneira a criar um Roadmap de funcionalidades, que permita o acompanhamento d
 5. Execute o backend:
    ```bash
    cd backend
-   uvicorn main:app --reload
+   docker build -t vctapi-app .
+   docker run -d --name vctapi-container -p 8000:8000 vctapi-app
    ```
 6. Execute o frontend:
    ```bash
