@@ -1,5 +1,36 @@
 @use "@/styles/vars.module.scss" as *;
 
 .page {
+  @include flexbox($d: column, $g: 64px);
+  @include container(1280px, true, 0px);
   
+  .satisfaction {
+    @include flexbox($d: column, $g: 24px);
+    
+    .bar {
+      height: 56px;
+      border-radius: $br_m;
+      background-color: $blue_75;
+      
+      .value {
+        height: 100%;
+        border-radius: $br_m;
+        background-color: $blue_40;
+      }
+    }
+  }
+  
+  .roadmap {
+    @include flexbox($d: column, $g: 24px);
+    
+    .btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+
+      & > :first-child {
+        grid-column: span 2;
+      }
+    }
+  }
 }
