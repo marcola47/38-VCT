@@ -276,13 +276,20 @@ export default function Page() {
   }
 
   async function createProject() {
-    const resData = await fetch("", {
+    const resData = await fetch("https://vctapi.marcola.shop/api/v1/projects", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        
+        project_name: name,
+        initial_description: desc,
+        channels: channels.map(channel => ({
+          channel_name: channel.name,
+          channel_type: channel.type,
+          type: "slack",
+          channel_slack_id: channel.id
+        })),
       })
     })
 
