@@ -8,10 +8,10 @@
 
 | Nome Completo         | Função no Projeto         |
 |-----------------------|---------------------------|
-| Antonio Sergio Rodrigues Tolio       | Desenvolvedor Backend     |
-| Eduardo Gehrke      | Desenvolvedora Frontend   |
-| Marcos Eduardo Kaminski          | Gerente de Projeto        |
-| Leonardo Silva da Veiga           | Designer UX/UI            |
+| Antonio Sergio Rodrigues Tolio       | Integrador de aplicação e database manager     |
+| Eduardo Gehrke      | Backend developer   |
+| Marcos Eduardo Kaminski          | Frontend developer        |
+| Leonardo Silva da Veiga           | AI developer            |
 
 ---
 
