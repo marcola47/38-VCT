@@ -1,0 +1,10 @@
+@use "@/styles/vars.module.scss" as *;
+
+.page {
+  @include flexbox($d: column, $g: 32px);
+  @include container(480px, true, 0px);
+  
+  .form {
+    @include flexbox($d: column, $g: 16px);
+  }
+}

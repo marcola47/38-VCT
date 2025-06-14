@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,16 +15,12 @@ import s from "./style.module.scss";
 export type NavbarUserType = "user" | "visitor" | "none";
 
 export function Navbar() {
-  const { data: session } = useSession();
   const pathname = usePathname();
   const screenWidth = useScreenWidth();
   
   const [navbarUserType, setNavbarUserType] = useState<NavbarUserType>();
 
-  useEffect(() => {
-    if (pathname && session !== undefined)
-      setNavbarUserType(getNavbarUserType())
-  }, [pathname, session])
+  useEffect(() => setNavbarUserType(getNavbarUserType()), [pathname])
 
   if (!screenWidth || !navbarUserType) {
     return (
@@ -39,12 +34,9 @@ export function Navbar() {
           className={ s.logo }
           href="/"
         >
-          <Image
-            src="/logo/logo--dark.png"
-            alt="Logo"
-            width={ 335 }
-            height={ 63 }
-          />
+          <div className={ s.logo }>
+            RODAI
+          </div>
         </Link>
 
         <div className={ clsx(app.loadingSprite, s.links) }/>
@@ -57,14 +49,7 @@ export function Navbar() {
 
   return <NavbarMobile/>
 
-  function getNavbarUserType(): NavbarUserType | undefined {    
-    if (session?.user) {
-      return "user"
-    }
-
-    if (pathname === "/admin/login")
-      return "none";
-
+  function getNavbarUserType(): NavbarUserType | undefined {
     return "visitor";
   }
 }

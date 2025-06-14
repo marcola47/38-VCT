@@ -3,7 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
-    optimizePackageImports: [],
+    optimizePackageImports: [
+      "@/app/components",
+      "@/libs/formatters",
+      "@/libs/helpers",
+      "@/libs/hooks",
+      "@/libs/validators",
+    ],
   },
   eslint: {
     ignoreDuringBuilds: true

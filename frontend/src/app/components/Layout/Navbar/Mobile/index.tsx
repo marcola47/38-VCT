@@ -30,12 +30,9 @@ export function NavbarMobile() {
           href="/"
           onClick={ () => setNavbarOpen(false) }
         >
-          <Image
-            src="/logo/logo--dark.png"
-            alt="Logo"
-            width={ 335 }
-            height={ 63 }
-          />
+          <div className={ s.logo }>
+            RODAI
+          </div>
         </Link>
 
         <NavbarLinks

@@ -1,7 +1,5 @@
 // TO-DO: add small indicator on notifications and cart links if applicable
 "use client"
-import { useSession } from "next-auth/react";
-
 import type { NavbarUserType } from "../";
 
 import clsx from "clsx"
@@ -11,7 +9,6 @@ type NavbarLinksProps = {
   navbarType?: "desktop" | "mobile"
   navbarUserType?: NavbarUserType,
   setNavbarOpen?: StateSetter<boolean>,
-  separator?: boolean,
 }
 
 export function NavbarLinks(props: NavbarLinksProps) {
@@ -19,10 +16,7 @@ export function NavbarLinks(props: NavbarLinksProps) {
     navbarType, 
     navbarUserType,
     setNavbarOpen,
-    separator, 
   } = props;
-
-  const { data: session } = useSession();
 
   if (navbarUserType === "visitor") {
     return (

@@ -72,10 +72,8 @@
     @include flexbox($a: center);
     user-select: none;
 
-    img {
-      width: 192px;
-      height: auto;
-    }  
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   .toggle {

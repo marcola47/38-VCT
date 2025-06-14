@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 
-import { QueryProvider, SessionProvider } from "@/app/contexts";
+import { QueryProvider } from "@/app/contexts/QueryProvider";
 import { Navbar } from "@/app/components";
 
 import clsx from "clsx";
@@ -55,15 +55,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           closeButton
         />
 
-        <SessionProvider>
-          <Navbar/>
+        <Navbar/>
 
-          <QueryProvider>
-            <div className={ app.main }>
-              { children }
-            </div>
-          </QueryProvider>
-        </SessionProvider>
+        <QueryProvider>
+          <div className={ app.main }>
+            { children }
+          </div>
+        </QueryProvider>
       </body>
     </html>
   );
